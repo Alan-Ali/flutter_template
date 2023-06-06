@@ -15,7 +15,7 @@ class CarsController{
   Future<List<Cars>> getCarList() async {
     final response = await rest.get("FlutterTestServlet");
 
-    List<Cars>? list = response.map((element) => Cars.fromJson(element)).toList();
+    List<Cars>  list = response.map((element) => Cars.fromJson(element)).toList();
 
     return list;
   }

@@ -1,5 +1,6 @@
 import "dart:convert";
 // ignore: import_of_legacy_library_into_null_safe
+import "package:flutter/foundation.dart";
 import "package:http/http.dart" as http;
 import 'package:network_info_plus/network_info_plus.dart';
 import "../Models/todo.dart";
@@ -17,10 +18,12 @@ class RestService {
   final String url = "http://localhost:8080/javaWebTests";
 
   Future<List<dynamic>> get(String endpoint) async {
-      final response = await http.get(Uri.parse("$url/$endpoint"),
-      headers: {"Content-Type": "application/json"});
+      final response = await http.get(Uri.parse("$url/$endpoint"),headers: {"Content-Type": "application/json"});
 
       if(response.statusCode == 200){
+        if (kDebugMode) {
+          print(response.body);
+        }
         return jsonDecode(response.body);
       } throw response;   
   

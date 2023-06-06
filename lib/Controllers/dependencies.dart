@@ -5,13 +5,15 @@
 import "package:get_it/get_it.dart";
 
 // here we put the
-import "./todo_service.dart";
+import 'package:flutter_template/Controllers/rest_service.dart';
+import "./car_controller.dart";
 
 GetIt service = GetIt.instance;
 
 
 void init(){
-  service.registerLazySingleton(() => TodoDataService());
+  service.registerLazySingleton(() => RestService());
+  service.registerLazySingleton(() => CarsController());
 
 
 }
