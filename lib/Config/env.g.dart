@@ -7,6 +7,6 @@ part of 'env.dart';
 // **************************************************************************
 
 class _Env {
-  static const String local_url = 'http://localhost:8080/javaWebTests';
-  static const String public_url = 'PUBLIC_URL_NOT_GENERATED';
+  static const String localUrl = 'http://localhost:8080/javaWebTests';
+  static const String publicUrl = 'PUBLIC_URL_NOT_GENERATED';
 }

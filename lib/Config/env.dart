@@ -6,8 +6,8 @@ part 'env.g.dart';
 @Envied(path: ".env.dev", name: "Env")
 abstract class Env {
   @EnviedField(varName: "LOCAL_URL")
-  static const String local_url = _Env.local_url as String;
+  static const String localUrl = _Env.localUrl;
 
   @EnviedField(varName: "PUBLIC_URL")
-  static const String public_url = _Env.public_url as String;
+  static const String publicUrl = _Env.publicUrl;
 }
