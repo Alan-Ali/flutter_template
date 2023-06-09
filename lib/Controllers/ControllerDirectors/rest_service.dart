@@ -14,7 +14,7 @@ var wifiIP = info.getWifiIP(); // 192.168.1.1
 var wifiName = info.getWifiName(); // FooNetwork
 
 class RestService {
-  final String url = Env.local_url;
+  final String url = Env.localUrl;
 
   // remember to set the headers carefully, whether it's application/x-www-form-urlencoded,
   // application/json or other types, to get the data back
