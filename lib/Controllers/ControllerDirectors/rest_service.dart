@@ -4,8 +4,7 @@ import "dart:convert";
 import "package:flutter/foundation.dart";
 import "package:http/http.dart" as http;
 import 'package:network_info_plus/network_info_plus.dart';
-import "../Models/todo.dart";
-import "../Models/log.dart";
+import '../../Models/logs.dart';
 
 final info = NetworkInfo();
 
@@ -16,7 +15,8 @@ var wifiName = info.getWifiName(); // FooNetwork
 class RestService {
   final String url = "http://localhost:8080/javaWebTests";
 
-  // remember to set the headers carefully, whether it's application/x-www-form-urlencoded, application/json or other types, to get the data back
+  // remember to set the headers carefully, whether it's application/x-www-form-urlencoded,
+  // application/json or other types, to get the data back
   Future<List<dynamic>> get(String endpoint) async {
     final response = await http.get(Uri.parse("$url/$endpoint"),
         headers: {"Content-Type": "application/x-www-form-urlencoded"});
@@ -24,15 +24,18 @@ class RestService {
     if (response.statusCode == 200) {
       if (kDebugMode) {
         print(response.body);
+        // Future<List<String>> wifiValues = [wifiBSSID,wifiIP,wifiName] as Future<List<String>>;
+        // print(wifiValues);
       }
       return jsonDecode(response.body);
     }
     throw response;
   }
 
-  Future<dynamic> post(String endpoint, {required Todo todo}) async {
+  Future<dynamic> post(String endpoint, {required dynamic todo}) async {
     final response = await http.post(Uri.parse("$url/$endpoint"),
-        headers: {"Content-Type": "application/json"}, body: jsonEncode(todo));
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: jsonEncode(todo));
 
     if (response.statusCode == 201) {
       return jsonDecode(response.body);
@@ -55,7 +58,8 @@ class RestService {
     // final response = await http.delete("$url/$endpoint");
     final request = http.Request("DELETE", Uri.parse("$url/$endpoint"));
     request.body = jsonEncode({'id': id});
-    request.headers.addAll({"Content-Type": "application/json"});
+    request.headers
+        .addAll({"Content-Type": "application/x-www-form-urlencoded"});
 
     final response = await request.send();
     if (response.statusCode == 200) {
@@ -66,7 +70,7 @@ class RestService {
 
   /* this will return the log of the */
   Future<dynamic> logs() async {
-    final response = await http.get(Uri.parse('$url/logs'),
+    final response = await http.get(Uri.parse('$url/logs.dart'),
         headers: {"Content-Type": "application/x-www-form-urlencoded"});
     return jsonDecode(response.body);
   }
@@ -76,11 +80,11 @@ class RestService {
     Logs json = Logs.fromJson(json: response);
     json.log = json.log;
     json.lastLogin = id;
-    await patch('logs', data: json);
+    await patch('logs.dart', data: json);
   }
 
 // Future<int> lastLog() async {
-//   final response = await http.get('$url/logs');
+//   final response = await http.get('$url/logs.dart');
 
 //   return jsonDecode(response.body);
 // }

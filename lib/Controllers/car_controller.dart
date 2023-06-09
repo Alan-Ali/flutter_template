@@ -1,7 +1,7 @@
 // import "dart:convert";
 import "../Models/cars.dart";
-import "./dependencies.dart";
-import "./rest_service.dart";
+import 'ControllerDirectors/dependencies.dart';
+import "./ControllerDirectors/rest_service.dart";
 
 class CarsController {
   final rest = service<RestService>();

@@ -1,16 +1,16 @@
 import "dart:convert";
 import "../models/todo.dart";
-import "./dependencies.dart";
-import "./rest_service.dart";
+import 'ControllerDirectors/dependencies.dart';
+import "./ControllerDirectors/rest_service.dart";
 
-
-class TodoDataService{
+class TodoDataService {
   final rest = service<RestService>();
 
   Future<List<Todo>> getTodoList() async {
     final response = await rest.get("todos");
 
-    List<Todo>? list = response.map((element) => Todo.fromJson(element)).toList();
+    List<Todo>? list =
+        response.map((element) => Todo.fromJson(element)).toList();
 
     return list;
   }
