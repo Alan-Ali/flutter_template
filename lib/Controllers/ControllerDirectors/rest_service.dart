@@ -5,6 +5,7 @@ import "package:flutter/foundation.dart";
 import "package:http/http.dart" as http;
 import 'package:network_info_plus/network_info_plus.dart';
 import '../../Models/logs.dart';
+import 'package:flutter_template/Config/env.dart';
 
 final info = NetworkInfo();
 
@@ -13,7 +14,7 @@ var wifiIP = info.getWifiIP(); // 192.168.1.1
 var wifiName = info.getWifiName(); // FooNetwork
 
 class RestService {
-  final String url = "http://localhost:8080/javaWebTests";
+  final String url = Env.local_url;
 
   // remember to set the headers carefully, whether it's application/x-www-form-urlencoded,
   // application/json or other types, to get the data back
